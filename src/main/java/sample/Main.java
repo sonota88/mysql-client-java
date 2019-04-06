@@ -45,14 +45,16 @@ public class Main {
                 )
         {
             ResultSetMetaData metaData = rs.getMetaData();
-            List<Optional<Object>> colNames = toColNames(metaData);
+            int numColumns = metaData.getColumnCount();
+
+            List<Optional<Object>> colNames = toColNames(metaData, numColumns);
 
             // header columns
             puts(toJsonArray(colNames));
 
             // body rows
             while (rs.next()) {
-                List<Optional<Object>> cols = toCols(rs);
+                List<Optional<Object>> cols = toCols(rs, numColumns);
                 puts(toJsonArray(cols));
             }
 
@@ -61,8 +63,7 @@ public class Main {
         }
     }
 
-    private List<Optional<Object>> toColNames(ResultSetMetaData metaData) throws SQLException{
-        int numColumns = metaData.getColumnCount();
+    private List<Optional<Object>> toColNames(ResultSetMetaData metaData, int numColumns) throws SQLException{
         List<Optional<Object>> colNames = new ArrayList<>();
 
         for (int n = 1; n <= numColumns; n++) {
@@ -76,8 +77,7 @@ public class Main {
         return colNames;
     }
 
-    private List<Optional<Object>> toCols(ResultSet rs) throws SQLException{
-        int numColumns = rs.getMetaData().getColumnCount();
+    private List<Optional<Object>> toCols(ResultSet rs, int numColumns) throws SQLException{
         List<Optional<Object>> cols = new ArrayList<>();
 
         for (int n = 1; n <= numColumns; n++) {
@@ -101,6 +101,7 @@ public class Main {
                     }
                 })
                 .collect(Collectors.joining(", "));
+
         return "[ " + content + " ]";
     }
 
