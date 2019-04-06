@@ -1,5 +1,3 @@
-package sample;
-
 import static util.Utils.puts;
 
 import java.sql.Connection;

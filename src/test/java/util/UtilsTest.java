@@ -1,11 +1,9 @@
-package sample.util;
+package util;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-
-import util.Utils;
 
 public class UtilsTest {
 

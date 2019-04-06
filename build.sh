@@ -3,7 +3,7 @@
 mvn_run(){
   mvn exec:java \
     --quiet \
-    "-Dexec.mainClass=sample.Main" \
+    "-Dexec.mainClass=Main" \
     "-Dexec.args=$*"
 }
 
