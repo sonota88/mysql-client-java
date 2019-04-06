@@ -84,7 +84,8 @@ public class Main {
             cols.add(
                     Optional.ofNullable(
                             rs.getObject(n)
-                            ));
+                            )
+                    );
         }
 
         return cols;
@@ -94,17 +95,13 @@ public class Main {
         String content = cols.stream()
                 .map(col -> {
                     if (col.isPresent()) {
-                        return wrapByDq(Utils.escape(col.get().toString()));
+                        return DQ + Utils.escape(col.get().toString()) + DQ;
                     } else {
                         return "null";
                     }
                 })
                 .collect(Collectors.joining(", "));
         return "[ " + content + " ]";
-    }
-
-    private String wrapByDq(String s) {
-        return DQ + s + DQ;
     }
 
 }
