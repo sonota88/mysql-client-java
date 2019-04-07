@@ -54,12 +54,12 @@ public class Main {
             List<Optional<Object>> colNames = toColNames(metaData, numColumns);
 
             // header columns
-            puts(toJsonArray(colNames));
+            puts(toJson(colNames));
 
             // body rows
             while (rs.next()) {
                 List<Optional<Object>> cols = toCols(rs, numColumns);
-                puts(toJsonArray(cols));
+                puts(toJson(cols));
             }
 
         } catch (SQLException e) {
@@ -99,7 +99,7 @@ public class Main {
         return cols;
     }
 
-    private String toJsonArray(List<Optional<Object>> cols) {
+    private String toJson(List<Optional<Object>> cols) {
         String content = cols.stream()
                 .map(col -> {
                     if (col.isPresent()) {
