@@ -10,8 +10,6 @@ import org.apache.commons.io.FileUtils;
 public class Utils {
 
     private static final String LF = "\n";
-    private static final String BS = "\\";
-    private static final String DQ = "\"";
 
     public static void puts(Object... os) {
         for (Object o : os) {
@@ -39,18 +37,6 @@ public class Utils {
         }
 
         return props;
-    }
-
-    public static String escape(String s) {
-        return s
-                .replace(BS, BS + BS)
-                .replace(DQ, BS + DQ)
-                .replace("\b", BS + "b")
-                .replace("\f", BS + "f")
-                .replace("\n", BS + "n")
-                .replace("\r", BS + "r")
-                .replace("\t", BS + "t")
-                ;
     }
 
 }
