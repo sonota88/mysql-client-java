@@ -12,11 +12,17 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import com.google.gson.Gson;
+
 import util.Utils;
 
 public class Main {
 
-    private static final String DQ = "\"";
+    private Gson gson;
+
+    Main() {
+        this.gson = new Gson();
+    }
 
     public static void main(String[] args) {
         try {
@@ -93,7 +99,7 @@ public class Main {
         String content = cols.stream()
                 .map(col -> {
                     if (col.isPresent()) {
-                        return DQ + Utils.escape(col.get().toString()) + DQ;
+                        return this.gson.toJson(col.get().toString());
                     } else {
                         return "null";
                     }
