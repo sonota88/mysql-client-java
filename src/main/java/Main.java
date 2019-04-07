@@ -67,7 +67,9 @@ public class Main {
         }
     }
 
-    private List<Optional<Object>> toColNames(ResultSetMetaData metaData, int numColumns) throws SQLException{
+    private List<Optional<Object>> toColNames(ResultSetMetaData metaData, int numColumns)
+            throws SQLException
+    {
         List<Optional<Object>> colNames = new ArrayList<>();
 
         for (int n = 1; n <= numColumns; n++) {
@@ -81,7 +83,9 @@ public class Main {
         return colNames;
     }
 
-    private List<Optional<Object>> toCols(ResultSet rs, int numColumns) throws SQLException{
+    private List<Optional<Object>> toCols(ResultSet rs, int numColumns)
+            throws SQLException
+    {
         List<Optional<Object>> cols = new ArrayList<>();
 
         for (int n = 1; n <= numColumns; n++) {
@@ -95,7 +99,7 @@ public class Main {
         return cols;
     }
 
-    private String toJsonArray(List<Optional<Object>> cols){
+    private String toJsonArray(List<Optional<Object>> cols) {
         String content = cols.stream()
                 .map(col -> {
                     if (col.isPresent()) {
