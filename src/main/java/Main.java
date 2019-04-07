@@ -100,7 +100,7 @@ public class Main {
                 })
                 .collect(Collectors.joining(", "));
 
-        return "[ " + content + " ]";
+        return "[" + content + "]";
     }
 
 }
