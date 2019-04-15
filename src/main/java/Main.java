@@ -12,6 +12,8 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.IOUtils;
+
 import com.google.gson.Gson;
 
 import util.Utils;
@@ -27,7 +29,13 @@ public class Main {
     public static void main(String[] args) {
         try {
             Properties props = Utils.readProps(args[0]);
-            String sql = Utils.readFile(args[1]);
+
+            String sql;
+            if (args.length >= 2) {
+                sql = Utils.readFile(args[1]);
+            } else {
+                sql = IOUtils.toString(System.in);
+            }
 
             Main main = new Main();
             main.main(props, sql);

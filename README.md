@@ -4,4 +4,6 @@
 ./build.sh package
 
 ./run.sh {config_path} {sql_path}
+# or
+echo "select ..." | ./run.sh {config_path}
 ```
