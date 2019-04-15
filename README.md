@@ -1,4 +1,4 @@
-```
+```sh
 ./build.sh run {config_path} {sql_path}
 
 ./build.sh package
