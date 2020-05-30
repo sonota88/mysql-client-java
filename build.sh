@@ -1,15 +1,17 @@
 #!/bin/bash
 
+MVN_CMD=mvn
+
 mvn_run(){
-  mvn exec:java \
+  $MVN_CMD exec:java \
     --quiet \
     "-Dexec.mainClass=Main" \
     "-Dexec.args=$*"
 }
 
 mvn_package(){
-  mvn clean
-  mvn package -Dmaven.test.skip=true
+  $MVN_CMD clean
+  $MVN_CMD package -Dmaven.test.skip=true
 
   echo "----"
   ls -l target/*.jar
