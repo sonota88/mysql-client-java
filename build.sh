@@ -1,6 +1,12 @@
 #!/bin/bash
 
-MVN_CMD=mvn
+# MVN_CMD=mvn
+MVN_CMD=./mvnw
+
+setup(){
+  echo "Install Maven Wrapper"
+  mvn -N io.takari:maven:0.7.7:wrapper -Dmaven=3.6.3
+}
 
 mvn_run(){
   $MVN_CMD exec:java \
@@ -22,6 +28,9 @@ mvn_package(){
 cmd="$1"; shift
 
 case $cmd in
+  setup)
+    setup
+    ;;
   run)
     mvn_run "$@"
     ;;
