@@ -46,6 +46,15 @@ public class Main {
     }
 
     public void main(Properties props, String sql) {
+        if (props.containsKey("driver_name")) {
+            String driverName = props.getProperty("driver_name");
+            try {
+                Class.forName(driverName);
+            } catch(ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         try (
                 Connection conn = DriverManager.getConnection(
                         props.getProperty("url"),
