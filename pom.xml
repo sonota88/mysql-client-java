@@ -6,7 +6,7 @@
   <groupId>sample1</groupId>
   <artifactId>sample2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>mysql-client-java</name>
+  <name>hive-client-java</name>
 
   <properties>
     <java.version>1.8</java.version>
@@ -22,13 +22,14 @@
       <version>2.4</version>
     </dependency>
 
+<!--
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.15</version>
     </dependency>
+-->
 
-<!--
     <dependency>
       <groupId>org.apache.hive</groupId>
       <artifactId>hive-jdbc</artifactId>
@@ -40,7 +41,6 @@
       <artifactId>hadoop-client</artifactId>
       <version>3.2.1</version>
     </dependency>
--->
 
     <dependency>
       <groupId>com.google.code.gson</groupId>
