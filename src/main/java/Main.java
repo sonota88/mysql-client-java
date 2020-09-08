@@ -55,9 +55,11 @@ public class Main {
             }
         }
 
+        String jdbcUrl = buildJdbcUrl(props);
+
         try (
                 Connection conn = DriverManager.getConnection(
-                        props.getProperty("url"),
+                        jdbcUrl,
                         props.getProperty("user"),
                         props.getProperty("password")
                         );
@@ -82,6 +84,19 @@ public class Main {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String buildJdbcUrl(Properties props) {
+        String jdbcUrl = props.getProperty("url");
+
+        if (System.getenv().containsKey("HIVE_CONF_LIST")) {
+            if (jdbcUrl.contains("?")) {
+                throw new IllegalStateException("Conflict between URL in config and HIVE_CONF_LIST");
+            }
+            jdbcUrl += "?" + System.getenv("HIVE_CONF_LIST");
+        }
+
+        return jdbcUrl;
     }
 
     private List<Optional<Object>> toColNames(ResultSetMetaData metaData, int numColumns)
